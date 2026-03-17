@@ -1,0 +1,4 @@
+{"ts":"2026-03-17T21:53:12.892Z","event":"frp-auth","op":"Login","runtimeId":"runtime-abc","credentialProvided":true,"generation":"gen-2","subdomain":null,"fullHost":null,"reasons":["credential mismatch"],"reject":true}
+{"ts":"2026-03-17T21:53:14.928Z","event":"frp-auth","op":"Login","runtimeId":"runtime-abc","credentialProvided":true,"generation":"gen-2","subdomain":null,"fullHost":null,"reasons":["credential mismatch"],"reject":true}
+{"ts":"2026-03-17T21:53:18.501Z","event":"frp-auth","op":"Login","runtimeId":"runtime-abc","credentialProvided":true,"generation":"gen-2","subdomain":null,"fullHost":null,"reasons":[],"reject":false}
+{"ts":"2026-03-17T21:53:18.513Z","event":"frp-auth","op":"NewProxy","runtimeId":"runtime-abc","credentialProvided":true,"generation":"gen-2","subdomain":"preview-abc","fullHost":"preview-abc.codapt.local","reasons":[],"reject":false}

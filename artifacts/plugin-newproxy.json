@@ -1,0 +1,18 @@
+{
+  "version": "0.1.0",
+  "op": "NewProxy",
+  "content": {
+    "user": {
+      "user": "",
+      "metas": {
+        "credential": "cred-good",
+        "generation": "gen-2",
+        "runtime_id": "runtime-abc"
+      },
+      "run_id": "323ab5f2d37f61de"
+    },
+    "proxy_name": "preview-abc-http",
+    "proxy_type": "http",
+    "subdomain": "preview-abc"
+  }
+}

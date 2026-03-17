@@ -1,0 +1,22 @@
+{
+  "connected": {
+    "endpoint": "/api/status",
+    "http_status": "200",
+    "body": "{\"http\":[{\"name\":\"preview-abc-http\",\"type\":\"http\",\"status\":\"running\",\"err\":\"\",\"local_addr\":\"demo-app:8000\",\"plugin\":\"\",\"remote_addr\":\"preview-abc.codapt.local:8080\"}]}"
+  },
+  "reload": {
+    "endpoint": "/api/reload",
+    "http_status": "200",
+    "body": ""
+  },
+  "disconnected": {
+    "endpoint": "/api/status",
+    "http_status": "200",
+    "body": "{}"
+  },
+  "rejected": {
+    "endpoint": "/api/status",
+    "http_status": "200",
+    "body": "{}"
+  }
+}

@@ -1,0 +1,110 @@
+name: edge-lab
+
+services:
+  demo-app:
+    build:
+      context: ./demo-app
+    restart: unless-stopped
+    environment:
+      PORT: "8000"
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8000/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  codapt-edge-stub:
+    build:
+      context: ./codapt-edge-stub
+    restart: unless-stopped
+    environment:
+      EDGE_EXPECTED_RUNTIME_ID: runtime-abc
+      EDGE_EXPECTED_CREDENTIAL: cred-good
+      EDGE_EXPECTED_GENERATION: gen-2
+      EDGE_EXPECTED_SUBDOMAIN: preview-abc
+      EDGE_EXPECTED_FULL_HOST: preview-abc.codapt.local
+      CADDY_API_URL: http://caddy:2019
+      ARTIFACTS_DIR: /artifacts
+      PORT: "9090"
+    expose:
+      - "9090"
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./artifacts:/artifacts
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:9090/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  frps:
+    build:
+      context: ./frp
+      args:
+        FRP_VERSION: "0.67.0"
+    command: ["sh", "-lc", "frps -c /etc/frp/${FRPS_CONFIG:-frps.m1.toml}"]
+    restart: unless-stopped
+    volumes:
+      - ./frps:/etc/frp:ro
+    expose:
+      - "7000"
+      - "8080"
+      - "7500"
+    ports:
+      - "8080:8080"
+      - "127.0.0.1:7500:7500"
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -qO- http://127.0.0.1:7500/static/ >/dev/null"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  frpc:
+    build:
+      context: ./frp
+      args:
+        FRP_VERSION: "0.67.0"
+    command: ["sh", "-lc", "frpc -c /etc/frp/${FRPC_CONFIG:-frpc.m1.toml}"]
+    restart: unless-stopped
+    volumes:
+      - ./frpc:/etc/frp:ro
+    ports:
+      - "127.0.0.1:7400:7400"
+    depends_on:
+      demo-app:
+        condition: service_healthy
+      frps:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -qO- http://127.0.0.1:7400/api/status >/dev/null"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  caddy:
+    image: caddy:2.8.4-alpine
+    command: ["caddy", "run", "--config", "/etc/caddy/${CADDY_CONFIG:-Caddyfile.m3}", "--adapter", "caddyfile"]
+    restart: unless-stopped
+    profiles:
+      - caddy
+    ports:
+      - "443:443"
+    volumes:
+      - ./caddy:/etc/caddy:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      frps:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -qO- http://127.0.0.1:2019/config/ >/dev/null"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+
+volumes:
+  caddy_data:
+  caddy_config:

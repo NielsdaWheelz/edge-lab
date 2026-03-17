@@ -1,0 +1,13 @@
+serverAddr = "frps"
+serverPort = 7000
+transport.tls.enable = true
+
+webServer.addr = "0.0.0.0"
+webServer.port = 7400
+
+[[proxies]]
+name = "preview-abc-http"
+type = "http"
+localIP = "demo-app"
+localPort = 8000
+subdomain = "preview-abc"

@@ -1,0 +1,7 @@
+bindPort = 7000
+vhostHTTPPort = 8080
+subDomainHost = "codapt.local"
+transport.tls.force = true
+
+webServer.addr = "0.0.0.0"
+webServer.port = 7500

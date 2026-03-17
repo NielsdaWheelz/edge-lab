@@ -1,0 +1,14 @@
+{
+  "frpc_reconnect_after_frpc_restart_ms": 712,
+  "frpc_reconnect_after_frps_restart_ms": 2275,
+  "caddy_reload_interrupts_sse": false,
+  "sse_events_observed_during_reload_probe": 7,
+  "artifacts": {
+    "plugin_login_request": "artifacts/plugin-login.json",
+    "plugin_newproxy_request": "artifacts/plugin-newproxy.json",
+    "frpc_admin_connected": "artifacts/frpc-admin-connected.json",
+    "frpc_admin_disconnected": "artifacts/frpc-admin-disconnected.json",
+    "frpc_admin_reload_response": "artifacts/frpc-admin-reload-response.json",
+    "frpc_admin_rejected": "artifacts/frpc-admin-rejected.json"
+  }
+}

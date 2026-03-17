@@ -1,0 +1,21 @@
+# frp server in front of all VM tunnels.
+# This lab keeps the same auth shape as the architecture doc: metadata-driven
+# Login/NewProxy checks delegated to codapt-edge-stub.
+
+bindPort = 7000
+vhostHTTPPort = 8080
+subDomainHost = "local.codapt.test"
+
+transport.tls.force = true
+
+auth.method = "token"
+auth.token = "lab-frp-token"
+
+webServer.addr = "0.0.0.0"
+webServer.port = 7500
+
+[[httpPlugins]]
+name = "codapt-edge-auth"
+addr = "http://codapt-edge-stub:9090"
+path = "/frp-auth"
+ops = ["Login", "NewProxy"]

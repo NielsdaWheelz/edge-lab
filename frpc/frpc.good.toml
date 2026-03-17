@@ -1,0 +1,18 @@
+serverAddr = "frps"
+serverPort = 7000
+transport.tls.enable = true
+loginFailExit = false
+
+webServer.addr = "0.0.0.0"
+webServer.port = 7400
+
+metadatas.runtime_id = "runtime-abc"
+metadatas.credential = "cred-good"
+metadatas.generation = "gen-2"
+
+[[proxies]]
+name = "preview-abc-http"
+type = "http"
+localIP = "demo-app"
+localPort = 8000
+subdomain = "preview-abc"

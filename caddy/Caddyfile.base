@@ -1,0 +1,8 @@
+{
+	admin 0.0.0.0:2019
+}
+
+*.codapt.local {
+	tls internal
+	respond "route not found" 404
+}

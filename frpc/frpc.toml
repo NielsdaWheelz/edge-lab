@@ -1,0 +1,17 @@
+serverAddr = "frps"
+serverPort = 7000
+transport.tls.enable = true
+
+auth.method = "token"
+auth.token = "lab-frp-token"
+
+# v1 contract from the architecture doc: tunnel identity travels in metadata.
+metadatas.runtime_id = "lab-runtime"
+metadatas.credential = "lab-credential"
+
+[[proxies]]
+name = "demo-http"
+type = "http"
+localIP = "demo-app"
+localPort = 3000
+subdomain = "app"
