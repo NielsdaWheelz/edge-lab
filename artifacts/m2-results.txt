@@ -1,4 +1,0 @@
-case=good expect=accept code=200
-case=bad-credential expect=reject code=404
-case=wrong-host expect=reject code=404
-case=stale-generation expect=reject code=404

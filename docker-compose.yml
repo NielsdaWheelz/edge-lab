@@ -7,6 +7,37 @@ services:
     restart: unless-stopped
     environment:
       PORT: "8000"
+      APP_LABEL: "default"
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8000/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  demo-app-gen2:
+    build:
+      context: ./demo-app
+    restart: unless-stopped
+    environment:
+      PORT: "8000"
+      APP_LABEL: "gen2"
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8000/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  demo-app-gen3:
+    build:
+      context: ./demo-app
+    restart: unless-stopped
+    environment:
+      PORT: "8000"
+      APP_LABEL: "gen3"
     expose:
       - "8000"
     healthcheck:
@@ -25,6 +56,13 @@ services:
       EDGE_EXPECTED_GENERATION: gen-2
       EDGE_EXPECTED_SUBDOMAIN: preview-abc
       EDGE_EXPECTED_FULL_HOST: preview-abc.codapt.local
+      EDGE_PHASE1_HOST: preview-abc.codapt.local
+      EDGE_PHASE1_SUBDOMAIN: preview-abc
+      EDGE_PHASE1_GENERATION_2_PUBLIC_ID: gpub2
+      EDGE_PHASE1_GENERATION_2_LEASE_TOKEN: lease-gen2-good
+      EDGE_PHASE1_GENERATION_3_PUBLIC_ID: gpub3
+      EDGE_PHASE1_GENERATION_3_LEASE_TOKEN: lease-gen3-good
+      EDGE_PHASE1_PROBE_URL: http://frps:8080/health
       CADDY_API_URL: http://caddy:2019
       ARTIFACTS_DIR: /artifacts
       PORT: "9090"
@@ -75,6 +113,30 @@ services:
       - "127.0.0.1:7400:7400"
     depends_on:
       demo-app:
+        condition: service_healthy
+      demo-app-gen2:
+        condition: service_healthy
+      frps:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -qO- http://127.0.0.1:7400/api/status >/dev/null"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  frpc-alt:
+    build:
+      context: ./frp
+      args:
+        FRP_VERSION: "0.67.0"
+    command: ["sh", "-lc", "frpc -c /etc/frp/${FRPC_ALT_CONFIG:-frpc.phase1.gen3.toml}"]
+    restart: unless-stopped
+    volumes:
+      - ./frpc:/etc/frp:ro
+    ports:
+      - "127.0.0.1:7401:7400"
+    depends_on:
+      demo-app-gen3:
         condition: service_healthy
       frps:
         condition: service_healthy

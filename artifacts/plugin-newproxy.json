@@ -5,14 +5,13 @@
     "user": {
       "user": "",
       "metas": {
-        "credential": "cred-good",
-        "generation": "gen-2",
-        "runtime_id": "runtime-abc"
+        "generation_public_id": "gpub3",
+        "lease_token": "lease-gen3-good"
       },
-      "run_id": "323ab5f2d37f61de"
+      "run_id": "2605e7935cb492d1"
     },
-    "proxy_name": "preview-abc-http",
+    "proxy_name": "g_gpub3__app",
     "proxy_type": "http",
-    "subdomain": "preview-abc"
+    "subdomain": "g-gpub3-preview-abc"
   }
 }

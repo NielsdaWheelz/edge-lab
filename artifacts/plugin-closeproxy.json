@@ -1,0 +1,15 @@
+{
+  "version": "0.1.0",
+  "op": "CloseProxy",
+  "content": {
+    "user": {
+      "user": "",
+      "metas": {
+        "generation_public_id": "gpub2",
+        "lease_token": "lease-gen2-good"
+      },
+      "run_id": "cea43b1f4db1627a"
+    },
+    "proxy_name": "g_gpub2__app"
+  }
+}

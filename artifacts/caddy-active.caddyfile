@@ -4,7 +4,9 @@
 
 preview-abc.codapt.local {
     tls internal
-    reverse_proxy frps:8080
+    reverse_proxy frps:8080 {
+        header_up Host g-gpub3-preview-abc.codapt.local
+    }
 }
 
 *.codapt.local {

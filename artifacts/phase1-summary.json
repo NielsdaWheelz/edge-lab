@@ -1,0 +1,47 @@
+{
+  "assertions": {
+    "login_has_no_run_id": true,
+    "duplicate_login_privilege_key_observed": true,
+    "newproxy_and_closeproxy_share_run_id": true,
+    "desired_live_separation_holds_before_reconcile": true,
+    "revoked_reconnect_rejected_before_newproxy": true,
+    "public_cutover_serves_new_generation": true,
+    "ping_not_observed_in_harness_window": true
+  },
+  "login": {
+    "raw_login_run_id": null,
+    "raw_login_privilege_key": "04b1d894e407154ad15eb0d9e305b8fc",
+    "successful_login_privilege_keys": [
+      "04b1d894e407154ad15eb0d9e305b8fc",
+      "04b1d894e407154ad15eb0d9e305b8fc"
+    ]
+  },
+  "session_correlation": {
+    "gen2_newproxy_run_id": "cea43b1f4db1627a",
+    "gen2_closeproxy_run_id": "cea43b1f4db1627a",
+    "raw_newproxy_run_id": "2605e7935cb492d1",
+    "raw_closeproxy_run_id": "cea43b1f4db1627a"
+  },
+  "publication": {
+    "desired_after_publish_gen3": "gpub3",
+    "live_before_reconcile_gen3": "gpub2",
+    "final_desired_generation": "gpub3",
+    "final_live_generation": "gpub3",
+    "final_public_route_upstream_host": "g-gpub3-preview-abc.codapt.local"
+  },
+  "revocation": {
+    "revoked_login_reasons": [
+      "lease token revoked"
+    ],
+    "post_revoke_newproxy_events": []
+  },
+  "artifacts": {
+    "plugin_login": "artifacts/plugin-login.json",
+    "plugin_newproxy": "artifacts/plugin-newproxy.json",
+    "plugin_closeproxy": "artifacts/plugin-closeproxy.json",
+    "frp_auth_events": "artifacts/frp-auth-events.ndjson",
+    "state_after_publish_gen3": "artifacts/phase1-state-after-request-publish-gen3.json",
+    "state_final": "artifacts/phase1-state-final.json",
+    "caddy_active": "artifacts/caddy-active.caddyfile"
+  }
+}

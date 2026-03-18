@@ -3,6 +3,7 @@ import os from "node:os";
 import { WebSocketServer } from "ws";
 
 const port = Number(process.env.PORT ?? "8000");
+const appLabel = process.env.APP_LABEL ?? "default";
 
 function sendText(res, status, payload) {
 	res.writeHead(status, { "content-type": "text/plain; charset=utf-8" });
@@ -18,7 +19,7 @@ const server = http.createServer((req, res) => {
 	const url = new URL(req.url ?? "/", "http://localhost");
 
 	if (req.method === "GET" && url.pathname === "/") {
-		sendText(res, 200, `hostname=${os.hostname()} timestamp=${new Date().toISOString()}\n`);
+		sendText(res, 200, `label=${appLabel} hostname=${os.hostname()} timestamp=${new Date().toISOString()}\n`);
 		return;
 	}
 
@@ -36,6 +37,7 @@ const server = http.createServer((req, res) => {
 
 		const emit = () => {
 			const payload = JSON.stringify({
+				label: appLabel,
 				hostname: os.hostname(),
 				timestamp: new Date().toISOString(),
 			});

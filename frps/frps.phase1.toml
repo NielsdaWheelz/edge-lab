@@ -1,0 +1,13 @@
+bindPort = 7000
+vhostHTTPPort = 8080
+subDomainHost = "codapt.local"
+transport.tls.force = true
+
+webServer.addr = "0.0.0.0"
+webServer.port = 7500
+
+[[httpPlugins]]
+name = "codapt-edge-auth"
+addr = "http://codapt-edge-stub:9090"
+path = "/frp-auth"
+ops = ["Login", "NewProxy", "Ping", "CloseProxy"]

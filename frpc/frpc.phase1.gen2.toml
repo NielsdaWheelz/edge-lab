@@ -1,0 +1,17 @@
+serverAddr = "frps"
+serverPort = 7000
+transport.tls.enable = true
+loginFailExit = false
+
+webServer.addr = "0.0.0.0"
+webServer.port = 7400
+
+metadatas.generation_public_id = "gpub2"
+metadatas.lease_token = "lease-gen2-good"
+
+[[proxies]]
+name = "g_gpub2__app"
+type = "http"
+localIP = "demo-app-gen2"
+localPort = 8000
+subdomain = "g-gpub2-preview-abc"

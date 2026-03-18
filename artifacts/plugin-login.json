@@ -3,18 +3,17 @@
   "op": "Login",
   "content": {
     "version": "0.67.0",
-    "hostname": "e93e0899676b",
+    "hostname": "edf18ce3fb4c",
     "os": "linux",
     "arch": "arm64",
-    "privilege_key": "e9637a09db3d59104657a7fa123ec019",
-    "timestamp": 1773784378,
+    "privilege_key": "04b1d894e407154ad15eb0d9e305b8fc",
+    "timestamp": 1773795286,
     "metas": {
-      "credential": "cred-good",
-      "generation": "gen-2",
-      "runtime_id": "runtime-abc"
+      "generation_public_id": "gpub3",
+      "lease_token": "lease-gen3-good"
     },
     "client_spec": {},
     "pool_count": 1,
-    "client_address": "172.25.0.6:56856"
+    "client_address": "172.25.0.8:37388"
   }
 }

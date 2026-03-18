@@ -1,8 +1,8 @@
 {
-  "frpc_reconnect_after_frpc_restart_ms": 712,
-  "frpc_reconnect_after_frps_restart_ms": 2275,
+  "frpc_reconnect_after_frpc_restart_ms": 433,
+  "frpc_reconnect_after_frps_restart_ms": 7173,
   "caddy_reload_interrupts_sse": false,
-  "sse_events_observed_during_reload_probe": 7,
+  "sse_events_observed_during_reload_probe": 8,
   "artifacts": {
     "plugin_login_request": "artifacts/plugin-login.json",
     "plugin_newproxy_request": "artifacts/plugin-newproxy.json",

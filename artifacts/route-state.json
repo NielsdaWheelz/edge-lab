@@ -1,3 +1,6 @@
 {
-  "preview-abc.codapt.local": "live"
+  "preview-abc.codapt.local": {
+    "state": "live",
+    "upstreamHost": "g-gpub3-preview-abc.codapt.local"
+  }
 }
